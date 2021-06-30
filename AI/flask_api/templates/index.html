@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Flask & VGG16 Image Classifier</title>
+    <script>
+      check = () => {
+        document.getElementById("Input").style.display = "none";
+        document.getElementById("onwait").style.display = "block";
+      };
+    </script>
+  </head>
+
+  <body style="background: #e0e1e2;">
+    <div>
+      <div
+        style="
+          background: black;
+          color: #ffffff;
+          height: 3em;
+          padding-top: 0.1em;
+          padding-bottom: 0.4em;
+        "
+      >
+        <h3 style="margin-left: 1em;">Fashion Image Classifier</h3>
+      </div>
+      <div style="margin-left: 1em; text-align: center;">
+        <img
+          id="onwait"
+          style="display: none; margin: 0 auto;"
+          src="https://www.dropbox.com/s/dgz1hc11hsj03m3/loader.gif?raw=1"
+        />
+        <p>
+          {% with messages = get_flashed_messages() %} {% if messages %}
+          Following are the details of the image passed to the classifier.
+          <br />
+          MAsterCategory: {{ messages[0][0] }} || SubCategory: {{ messages[0][1]
+          }} || ArticleType: {{ messages[0][2] }} || Usage: {{messages[0][3]}}
+          || Image: {{ messages[1] }} {% endif %} {% endwith %}
+        </p>
+        <span id="Input">
+          <h2>Select a file to upload</h2>
+
+          <form method="post" action="/" enctype="multipart/form-data">
+            <dl>
+              <p>
+                <input
+                  type="file"
+                  name="file"
+                  autocomplete="off"
+                  required
+                  style="margin-left: 6em;"
+                />
+              </p>
+            </dl>
+            <p>
+              <input
+                type="submit"
+                value="Submit"
+                id="button"
+                style="
+                  color: white;
+                  background-color: black;
+                  padding: 1em 2em;
+                  border: none;
+                  border-radius: 10px;
+                "
+                onclick="check()"
+                onMouseOver="this.style.cursor='pointer'"
+              />
+            </p>
+          </form>
+        </span>
+        <img src="https://www.dropbox.com/s/nz536iiikx6wmad/234.png?raw=1" />
+      </div>
+    </div>
+  </body>
+</html>
